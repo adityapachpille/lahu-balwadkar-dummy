@@ -83,9 +83,9 @@ const SoundCheck = () => {
         <td className="border-2 border-gray-400 text-center">
           <button
             onClick={() => playSound(baseIndex + index, isCandidate, tableIndex)}
-            className="rounded-full w-24 h-6 bg-blue-700 text-white text-xs font-bold"
+            className="rounded-full w-24 h-10 bg-blue-700 text-white text-xs font-bold whitespace-pre-line"
           >
-            {isCandidate ? "बटन दाबा" : ""}
+            {isCandidate ? "बटन\nदाबा" : ""}
           </button>
         </td>
       </tr>
@@ -106,7 +106,16 @@ const SoundCheck = () => {
       <table className="w-full border-2 border-gray-400 mt-0">
         <tbody>
           {[...Array(totalRows)].map((_, i) =>
-            renderRow(i, tableIndex * 100, name, totalRows, bgColor, candidateIndex, tableIndex, imageSrc)
+            renderRow(
+              i,
+              tableIndex * 100,
+              name,
+              totalRows,
+              bgColor,
+              candidateIndex,
+              tableIndex,
+              imageSrc
+            )
           )}
         </tbody>
       </table>
@@ -136,9 +145,12 @@ const SoundCheck = () => {
       </div>
 
       {/* TABLES 1-3 */}
-      {!showFourthTable && renderTable(0, "प्रभाग क्र. ९ (अ)", 4, "चिमटे रोहिणी सुधीर", "bg-white", 0, "/use1.png")}
-      {!showFourthTable && renderTable(1, "प्रभाग क्र. ९ (ब)", 8, "कळमकर गणेश ज्ञानोबा", "bg-[#e8bbda]", 0, "/use2.png")}
-      {!showFourthTable && renderTable(2, "प्रभाग क्र. ९ (क)", 5, "कोकाटे मयुरी राहुल", "bg-[#fdfda5]", 0, "/use3.png")}
+      {!showFourthTable &&
+        renderTable(0, "प्रभाग क्र. ९ (अ)", 4, "चिमटे रोहिणी सुधीर", "bg-white", 0, "/use1.png")}
+      {!showFourthTable &&
+        renderTable(1, "प्रभाग क्र. ९ (ब)", 8, "कळमकर गणेश ज्ञानोबा", "bg-[#e8bbda]", 0, "/use2.png")}
+      {!showFourthTable &&
+        renderTable(2, "प्रभाग क्र. ९ (क)", 5, "कोकाटे मयुरी राहुल", "bg-[#fdfda5]", 0, "/use3.png")}
 
       {/* TABLE 4 */}
       {showFourthTable &&
@@ -147,7 +159,7 @@ const SoundCheck = () => {
       {/* FOOTER MESSAGE */}
       <h1 className="text-center text-xl font-bold mb-2 mt-4">
         <span className="text-red-600">कमळ </span> या निशाणी समोरील बटन दाबून{" "}
-        <span className="text-red-600">भारतीय जनता पक्षाच्या .</span> चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
+        <span className="text-red-600">भारतीय जनता पक्षाच्या</span> चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
       </h1>
 
       <div className="text-center mb-2 pt-2">
