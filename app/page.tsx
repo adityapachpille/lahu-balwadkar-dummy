@@ -58,55 +58,45 @@ const SoundCheck = () => {
     const isNota = index === totalRows - 1;
 
     return (
-      <tr>
-        {/* अनु. क्र. */}
-        <td className="border-2 border-gray-400 text-xs font-bold text-center w-[50px] min-w-[50px] max-w-[50px]">
+      <tr className="align-middle">
+        <td className="border-2 border-gray-400 text-xs font-bold text-center w-[40px]">
           {toMarathi(index + 1)}
         </td>
 
-        {/* ✅ NAME (LEFT) + BIG PHOTO (RIGHT) */}
-        <td className="border-2 border-gray-400 text-sm font-bold">
+        <td className="border-2 border-gray-400 w-[220px]">
           {isCandidate && (
-            <div className="flex items-center justify-between gap-3 px-2">
-              <div className="text-left leading-tight">
+            <div className="flex items-center gap-3 px-2 py-1">
+              <img src={imageSrc} className="w-16 h-16 object-cover rounded" />
+              <div className="leading-tight font-bold text-sm">
                 {name}
               </div>
-              <img
-                src={imageSrc}
-                className="w-16 h-16 object-contain"
-              />
             </div>
           )}
           {isNota && (
-            <div className="text-center font-bold">नोटा (NOTA)</div>
+            <div className="text-center font-bold py-4">नोटा (NOTA)</div>
           )}
         </td>
 
-        {/* निशाणी */}
-        <td className="border-2 border-gray-400 text-center">
+        <td className="border-2 border-gray-400 text-center w-[80px]">
           {isCandidate && (
-            <img src="/symbol-bartan.png" className="w-10 h-10 mx-auto" />
+            <img src="/symbol-bartan.png" className="w-12 h-12 mx-auto" />
           )}
         </td>
 
-        {/* बत्ती */}
-        <td className="border-2 border-gray-400 text-center">
-          <div
-            className={`w-5 h-5 mx-auto rounded-full ${
-              activeRow === baseIndex + index ? "bg-red-600" : "bg-gray-400"
-            }`}
-          />
+        <td className="border-2 border-gray-400 text-center w-[60px]">
+          {isCandidate && (
+            <img src="/arrow-left.png" className="w-6 h-6 mx-auto" />
+          )}
         </td>
 
-        {/* बटन */}
-        <td className="border-2 border-gray-400 text-center">
+        <td className="border-2 border-gray-400 text-center w-[100px]">
           <button
             onClick={() =>
               playSound(baseIndex + index, isCandidate, tableIndex)
             }
-            className="w-24 h-10 bg-blue-700 text-white text-xs font-bold rounded-full whitespace-pre-line"
+            className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
           >
-            {isCandidate ? "बटन\nदाबा" : ""}
+            बटन दबा
           </button>
         </td>
       </tr>
@@ -139,12 +129,12 @@ const SoundCheck = () => {
           {showThead && (
             <thead>
               <tr className="bg-gray-100">
-                <th className="border-2 border-gray-400 text-xs font-bold text-center w-[50px]">
+                <th className="border-2 border-gray-400 text-xs font-bold text-center w-[40px]">
                   अनु. क्र.
                 </th>
                 <th className="border-2 border-gray-400 text-xs">{title}</th>
                 <th className="border-2 border-gray-400 text-xs">निशाणी</th>
-                <th className="border-2 border-gray-400 text-xs">बत्ती</th>
+                <th className="border-2 border-gray-400 text-xs">दिशा</th>
                 <th className="border-2 border-gray-400 text-xs">बटन</th>
               </tr>
             </thead>
