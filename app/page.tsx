@@ -50,7 +50,6 @@ const SoundCheck = () => {
     baseIndex: number,
     name: string,
     totalRows: number,
-    bgColor: string,
     candidateIndex = 0,
     tableIndex = 0,
     imageSrc?: string
@@ -59,7 +58,7 @@ const SoundCheck = () => {
     const isNota = index === totalRows - 1;
 
     return (
-      <tr key={index} className={bgColor}>
+      <tr key={index}>
         <td className="border-2 border-gray-400 text-center font-bold text-xs">
           {toMarathi(index + 1)}
         </td>
@@ -98,15 +97,15 @@ const SoundCheck = () => {
     name: string,
     candidateIndex: number,
     imageSrc: string,
-    rowBgColor: string,
+    tableBgColor: string,
     rowStart = 0,
-    rowEnd?: number // For partial rendering
+    rowEnd?: number
   ) => {
     const end = rowEnd ?? totalRows;
     return (
-      <>
+      <div className={`${tableBgColor} p-2 rounded-md mb-4`}>
         <h4 className="text-center text-xl font-bold mb-0 pt-2">{title}</h4>
-        <table className="w-full border-2 border-gray-400 mt-0">
+        <table className="w-full border-2 border-gray-400 mt-2 bg-transparent">
           <tbody>
             {[...Array(end - rowStart)].map((_, i) =>
               renderRow(
@@ -114,7 +113,6 @@ const SoundCheck = () => {
                 tableIndex * 100,
                 name,
                 totalRows,
-                rowBgColor,
                 candidateIndex,
                 tableIndex,
                 imageSrc
@@ -122,7 +120,7 @@ const SoundCheck = () => {
             )}
           </tbody>
         </table>
-      </>
+      </div>
     );
   };
 
@@ -159,15 +157,14 @@ const SoundCheck = () => {
         renderTable(2, "प्रभाग क्र. ९ (क)", 5, "कोकाटे मयुरी राहुल", 0, "/use3.png", "bg-[#fdfda5]", 0, 2)}
 
       {/* TABLE 4 */}
-      {showFourthTable &&
+      {showFourthTable && (
         <>
           {/* Remaining 3 rows of third table */}
           {renderTable(2, "प्रभाग क्र. ९ (क) उर्वरित", 5, "कोकाटे मयुरी राहुल", 0, "/use3.png", "bg-[#fdfda5]", 2)}
-
-          {/* Existing fourth table */}
+          {/* Fourth table */}
           {renderTable(3, "प्रभाग क्र. ९ (ड)", 10, "बालवडकर लहू गजानन", 3, "/use4.png", "bg-[#9fdaeb]")}
         </>
-      }
+      )}
 
       {/* FOOTER MESSAGE */}
       <h1 className="text-center text-xl font-bold mb-2 mt-4">
