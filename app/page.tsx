@@ -48,7 +48,7 @@ const SoundCheck = () => {
   const renderRow = (
     index: number,
     baseIndex: number,
-    name: string,
+    name: React.ReactNode,
     totalRows: number,
     candidateIndex: number,
     tableIndex: number,
@@ -117,7 +117,7 @@ const SoundCheck = () => {
     tableIndex: number,
     title: string,
     totalRows: number,
-    name: string,
+    name: React.ReactNode,
     candidateIndex: number,
     imageSrc: string,
     bgColor: string,
@@ -172,16 +172,79 @@ const SoundCheck = () => {
     <section className="bg-gray-100 px-4 py-4">
       {!showFourthTable && (
         <>
-          {renderTable(0,"प्रभाग क्र. ९ (अ)",4,"चिमटे रोहिणी सुधीर",0,"/use1.png","bg-white",true)}
-          {renderTable(1,"प्रभाग क्र. ९ (ब)",8,"कळमकर गणेश ज्ञानोबा",0,"/use2.png","bg-[#e8bbda]",false)}
-          {renderTable(2,"प्रभाग क्र. ९ (क)",5,"कोकाटे मयुरी राहुल",0,"/use3.png","bg-[#fdfda5]",false,0,2)}
+          {renderTable(
+            0,
+            "प्रभाग क्र. ९ (अ)",
+            4,
+            <>
+              चिमटे रोहिणी सुधीर<br />
+              <span className="text-gray-600 text-xs">Chimate Rohini Sudheer</span>
+            </>,
+            0,
+            "/use1.png",
+            "bg-white",
+            true
+          )}
+          {renderTable(
+            1,
+            "प्रभाग क्र. ९ (ब)",
+            8,
+            <>
+              कळमकर गणेश ज्ञानोबा<br />
+              <span className="text-gray-600 text-xs">Kalamkar Ganesh Dnyanoba</span>
+            </>,
+            0,
+            "/use2.png",
+            "bg-[#e8bbda]",
+            false
+          )}
+          {renderTable(
+            2,
+            "प्रभाग क्र. ९ (क)",
+            5,
+            <>
+              कोकाटे मयुरी राहुल<br />
+              <span className="text-gray-600 text-xs">Kokate Mayuri Rahul</span>
+            </>,
+            0,
+            "/use3.png",
+            "bg-[#fdfda5]",
+            false,
+            0,
+            2
+          )}
         </>
       )}
 
       {showFourthTable && (
         <>
-          {renderTable(2,"प्रभाग क्र. ९ (क)",5,"कोकाटे मयुरी राहुल",0,"/use3.png","bg-[#fdfda5]",true,2)}
-          {renderTable(3,"प्रभाग क्र. ९ (ड)",10,"बालवडकर लहू गजानन",3,"/use4.png","bg-[#9fdaeb]",false)}
+          {renderTable(
+            2,
+            "प्रभाग क्र. ९ (क)",
+            5,
+            <>
+              कोकाटे मयुरी राहुल<br />
+              <span className="text-gray-600 text-xs">Kokate Mayuri Rahul</span>
+            </>,
+            0,
+            "/use3.png",
+            "bg-[#fdfda5]",
+            true,
+            2
+          )}
+          {renderTable(
+            3,
+            "प्रभाग क्र. ९ (ड)",
+            10,
+            <>
+              बालवडकर लहू गजानन<br />
+              <span className="text-gray-600 text-xs">Balwadkar Lahu Gajanan</span>
+            </>,
+            3,
+            "/use4.png",
+            "bg-[#9fdaeb]",
+            false
+          )}
         </>
       )}
 
