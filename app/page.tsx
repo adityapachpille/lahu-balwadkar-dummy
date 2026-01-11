@@ -94,23 +94,18 @@ const SoundCheck = () => {
           />
         </td>
 
-        {/* ARROW / CLOCK */}
-        <td className="border-2 border-gray-400 text-center w-[60px]">
-          {isCandidate && (
-            <img src="/arrow-left.png" className="w-6 h-6 mx-auto" />
-          )}
-        </td>
-
         {/* BUTTON */}
         <td className="border-2 border-gray-400 text-center w-[100px] font-bold">
-          <button
-            onClick={() =>
-              playSound(baseIndex + index, isCandidate, tableIndex)
-            }
-            className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
-          >
-            बटन दबा
-          </button>
+          {isCandidate && (
+            <button
+              onClick={() =>
+                playSound(baseIndex + index, isCandidate, tableIndex)
+              }
+              className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
+            >
+              बटन दबा
+            </button>
+          )}
         </td>
       </tr>
     );
@@ -148,7 +143,6 @@ const SoundCheck = () => {
                 <th className="border-2 border-gray-400 text-xs font-bold">{title}</th>
                 <th className="border-2 border-gray-400 text-xs font-bold">निशाणी</th>
                 <th className="border-2 border-gray-400 text-xs font-bold">बत्ती</th>
-                <th className="border-2 border-gray-400 text-xs font-bold">दिशा</th>
                 <th className="border-2 border-gray-400 text-xs font-bold">बटन</th>
               </tr>
             </thead>
