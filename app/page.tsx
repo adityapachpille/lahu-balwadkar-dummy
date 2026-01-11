@@ -165,6 +165,7 @@ const SoundCheck = () => {
   };
 
   return (
+  <section className="bg-gray-100 px-4 py-4">
     <h1 className="text-center text-xl font-bold mb-4 pt-2">
         पुणे महानगरपालिका सार्वत्रिक निवडणूक - २०२६ डमी मतदान यंत्र
       </h1>
@@ -185,7 +186,6 @@ const SoundCheck = () => {
         </span>
       </div>
     
-    <section className="bg-gray-100 px-4 py-4">
       {!showFourthTable && (
         <>
           <h5 className="text-center text-xl font-bold mb-4 pt-2">
