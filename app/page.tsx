@@ -7,7 +7,7 @@ const SoundCheck = () => {
   const otherSoundRef = useRef<HTMLAudioElement | null>(null);
 
   const [activeRow, setActiveRow] = useState<number | null>(null);
-  const [candidateClicks, setCandidateClicks] = useState([false, false, false]); // Track 3 candidate buttons
+  const [candidateClicks, setCandidateClicks] = useState([false, false, false]);
   const [showFourthTable, setShowFourthTable] = useState(false);
 
   const toMarathi = (num: number) =>
@@ -26,7 +26,6 @@ const SoundCheck = () => {
 
   const playSound = (index: number, isCandidate: boolean, tableIndex: number) => {
     const audio = isCandidate ? candidateSoundRef.current : otherSoundRef.current;
-
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
@@ -97,9 +96,9 @@ const SoundCheck = () => {
     title: string,
     totalRows: number,
     name: string,
-    bgColor: string,
     candidateIndex: number,
-    imageSrc: string
+    imageSrc: string,
+    rowBgColor: string // Pass row background color dynamically
   ) => (
     <>
       <h4 className="text-center text-xl font-bold mb-0 pt-2">{title}</h4>
@@ -111,7 +110,7 @@ const SoundCheck = () => {
               tableIndex * 100,
               name,
               totalRows,
-              bgColor,
+              rowBgColor, // Apply correct row background
               candidateIndex,
               tableIndex,
               imageSrc
@@ -146,20 +145,20 @@ const SoundCheck = () => {
 
       {/* TABLES 1-3 */}
       {!showFourthTable &&
-        renderTable(0, "प्रभाग क्र. ९ (अ)", 4, "चिमटे रोहिणी सुधीर", "bg-white", 0, "/use1.png")}
+        renderTable(0, "प्रभाग क्र. ९ (अ)", 4, "चिमटे रोहिणी सुधीर", 0, "/use1.png", "bg-white")}
       {!showFourthTable &&
-        renderTable(1, "प्रभाग क्र. ९ (ब)", 8, "कळमकर गणेश ज्ञानोबा", "bg-[#e8bbda]", 0, "/use2.png")}
+        renderTable(1, "प्रभाग क्र. ९ (ब)", 8, "कळमकर गणेश ज्ञानोबा", 0, "/use2.png", "bg-[#e8bbda]")}
       {!showFourthTable &&
-        renderTable(2, "प्रभाग क्र. ९ (क)", 5, "कोकाटे मयुरी राहुल", "bg-[#fdfda5]", 0, "/use3.png")}
+        renderTable(2, "प्रभाग क्र. ९ (क)", 5, "कोकाटे मयुरी राहुल", 0, "/use3.png", "bg-[#fdfda5]")}
 
       {/* TABLE 4 */}
       {showFourthTable &&
-        renderTable(3, "प्रभाग क्र. ९ (ड)", 10, "बालवडकर लहू गजानन", "bg-[#9fdaeb]", 3, "/use4.png")}
+        renderTable(3, "प्रभाग क्र. ९ (ड)", 10, "बालवडकर लहू गजानन", 3, "/use4.png", "bg-[#9fdaeb]")}
 
       {/* FOOTER MESSAGE */}
       <h1 className="text-center text-xl font-bold mb-2 mt-4">
         <span className="text-red-600">कमळ </span> या निशाणी समोरील बटन दाबून{" "}
-        <span className="text-red-600">भारतीय जनता पक्षाच्या</span> चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
+        <span className="text-red-600">भारतीय जनता पक्षाच्या .</span> चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
       </h1>
 
       <div className="text-center mb-2 pt-2">
@@ -168,7 +167,6 @@ const SoundCheck = () => {
         </span>
       </div>
 
-      {/* AUDIO */}
       <audio ref={candidateSoundRef} src="/sound1.mp3" />
       <audio ref={otherSoundRef} src="/sound2.mp3" />
     </section>
