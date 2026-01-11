@@ -94,18 +94,16 @@ const SoundCheck = () => {
           />
         </td>
 
-        {/* BUTTON */}
+        {/* BUTTON (always visible, text only for candidate) */}
         <td className="border-2 border-gray-400 text-center w-[100px] font-bold">
-          {isCandidate && (
-            <button
-              onClick={() =>
-                playSound(baseIndex + index, isCandidate, tableIndex)
-              }
-              className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
-            >
-              बटन दबा
-            </button>
-          )}
+          <button
+            onClick={() =>
+              playSound(baseIndex + index, isCandidate, tableIndex)
+            }
+            className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
+          >
+            {isCandidate ? "बटन दबा" : ""}
+          </button>
         </td>
       </tr>
     );
