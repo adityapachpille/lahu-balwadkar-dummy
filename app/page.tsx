@@ -59,16 +59,19 @@ const SoundCheck = () => {
 
     return (
       <tr>
-        <td className="border-2 border-gray-400 text-center text-xs font-bold">
+        {/* अनु. क्र. – FIXED WIDTH */}
+        <td className="border-2 border-gray-400 text-xs font-bold text-center w-[50px] min-w-[50px] max-w-[50px]">
           {toMarathi(index + 1)}
         </td>
 
-        <td className="border-2 border-gray-400 text-center text-sm font-bold">
+        <td className="border-2 border-gray-400 text-sm font-bold text-center">
           {isCandidate ? name : isNota ? "नोटा (NOTA)" : ""}
         </td>
 
         <td className="border-2 border-gray-400 text-center">
-          {isCandidate && <img src={imageSrc} className="w-10 h-10 mx-auto" />}
+          {isCandidate && (
+            <img src={imageSrc} className="w-10 h-10 mx-auto" />
+          )}
         </td>
 
         <td className="border-2 border-gray-400 text-center">
@@ -119,7 +122,7 @@ const SoundCheck = () => {
           {showThead && (
             <thead>
               <tr className="bg-gray-100">
-                <th className="border-2 border-gray-400 text-xs w-10">
+                <th className="border-2 border-gray-400 text-xs font-bold text-center w-[50px] min-w-[50px] max-w-[50px]">
                   अनु. क्र.
                 </th>
                 <th className="border-2 border-gray-400 text-xs">{title}</th>
@@ -151,10 +154,6 @@ const SoundCheck = () => {
 
   return (
     <section className="bg-gray-100 px-4 py-4">
-      <h1 className="text-center text-xl font-bold mb-2">
-        पुणे महानगरपालिका सार्वत्रिक निवडणूक - २०२६ डमी मतदान यंत्र
-      </h1>
-
       {!showFourthTable && (
         <>
           {renderTable(
