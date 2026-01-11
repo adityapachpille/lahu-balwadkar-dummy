@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
-const SoundCheck = () => {
+const SoundCheck: React.FC = () => {
   const candidateSoundRef = useRef<HTMLAudioElement | null>(null);
   const otherSoundRef = useRef<HTMLAudioElement | null>(null);
 
@@ -58,7 +58,7 @@ const SoundCheck = () => {
     const isNota = index === totalRows - 1;
 
     return (
-      <tr className="align-middle">
+      <tr key={baseIndex + index} className="align-middle">
         <td className="border-2 border-gray-400 text-xs font-bold text-center w-[40px]">
           {toMarathi(index + 1)}
         </td>
@@ -67,22 +67,16 @@ const SoundCheck = () => {
         <td className="border-2 border-gray-400 w-[180px]">
           {isCandidate && (
             <div className="flex items-center gap-3 px-2 py-1">
-              <div className="leading-tight font-bold text-sm">
-                {name}
-              </div>
-              <img src={imageSrc} className="w-16 h-16 object-cover rounded" />
+              <div className="leading-tight font-bold text-sm">{name}</div>
+              <img src={imageSrc} alt="" className="w-16 h-16 object-cover rounded" />
             </div>
           )}
-          {isNota && (
-            <div className="text-center font-bold py-4">नोटा (NOTA)</div>
-          )}
+          {isNota && <div className="text-center font-bold py-4">नोटा (NOTA)</div>}
         </td>
 
         {/* SYMBOL (bigger width + bigger logo) */}
         <td className="border-2 border-gray-400 text-center w-[120px]">
-          {isCandidate && (
-            <img src="/symbol-bartan.png" className="w-16 h-16 mx-auto" />
-          )}
+          {isCandidate && <img src="/symbol-bartan.png" alt="" className="w-16 h-16 mx-auto" />}
         </td>
 
         {/* BULB */}
@@ -97,9 +91,7 @@ const SoundCheck = () => {
         {/* BUTTON (always visible, text only for candidate) */}
         <td className="border-2 border-gray-400 text-center w-[100px] font-bold">
           <button
-            onClick={() =>
-              playSound(baseIndex + index, isCandidate, tableIndex)
-            }
+            onClick={() => playSound(baseIndex + index, isCandidate, tableIndex)}
             className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
           >
             {isCandidate ? "बटन दाबा" : ""}
@@ -147,7 +139,7 @@ const SoundCheck = () => {
           )}
 
           <tbody>
-            {[...Array(limit - start)].map((_, i) =>
+            {Array.from({ length: limit - start }).map((_, i) =>
               renderRow(
                 i + start,
                 tableIndex * 100,
@@ -165,8 +157,8 @@ const SoundCheck = () => {
   };
 
   return (
-  <section className="bg-gray-100 px-4 py-4">
-    <h1 className="text-center text-xl font-bold mb-4 pt-2">
+    <section className="bg-gray-100 px-4 py-4">
+      <h1 className="text-center text-xl font-bold mb-4 pt-2">
         पुणे महानगरपालिका सार्वत्रिक निवडणूक - २०२६ डमी मतदान यंत्र
       </h1>
 
@@ -185,22 +177,18 @@ const SoundCheck = () => {
           प्रभाग क्रमांक ९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार
         </span>
       </div>
-    
+
       {!showFourthTable && (
         <>
-          <h5 className="text-center text-xl font-bold mb-4 pt-2">
-        मशीन १
-      </h5>
-       
+          <h5 className="text-center text-xl font-bold mb-4 pt-2">मशीन १</h5>
+
           {renderTable(
-             <h5 className="text-center text-xl font-bold mb-4 pt-2">
-        प्रभाग क्र. ९ (अ)
-      </h5>
             0,
             "प्रभाग क्र. ९ (अ)",
             4,
             <>
-              चिमटे रोहिणी सुधीर<br />
+              चिमटे रोहिणी सुधीर
+              <br />
               <span className="text-gray-600 text-xs">Chimate Rohini Sudheer</span>
             </>,
             0,
@@ -208,12 +196,14 @@ const SoundCheck = () => {
             "bg-white",
             true
           )}
+
           {renderTable(
             1,
             "प्रभाग क्र. ९ (ब)",
             8,
             <>
-              कळमकर गणेश ज्ञानोबा<br />
+              कळमकर गणेश ज्ञानोबा
+              <br />
               <span className="text-gray-600 text-xs">Kalamkar Ganesh Dnyanoba</span>
             </>,
             0,
@@ -221,12 +211,17 @@ const SoundCheck = () => {
             "bg-[#e8bbda]",
             false
           )}
+
+          {/* Insert heading here before the 3rd table */}
+          <h5 className="text-center text-xl font-bold mb-4 pt-2">मशीन २</h5>
+
           {renderTable(
             2,
             "प्रभाग क्र. ९ (क)",
             5,
             <>
-              कोकाटे मयुरी राहुल<br />
+              कोकाटे मयुरी राहुल
+              <br />
               <span className="text-gray-600 text-xs">Kokate Mayuri Rahul</span>
             </>,
             0,
@@ -241,12 +236,14 @@ const SoundCheck = () => {
 
       {showFourthTable && (
         <>
+          {/* Continue the remaining rows of the third table (start at row index 2) */}
           {renderTable(
             2,
             "प्रभाग क्र. ९ (क)",
             5,
             <>
-              कोकाटे मयुरी राहुल<br />
+              कोकाटे मयुरी राहुल
+              <br />
               <span className="text-gray-600 text-xs">Kokate Mayuri Rahul</span>
             </>,
             0,
@@ -255,15 +252,15 @@ const SoundCheck = () => {
             true,
             2
           )}
-             <h5 className="text-center text-xl font-bold mb-4 pt-2">
-        मशीन २
-      </h5>
+
+          {/* Fourth table (machine 2 continues) */}
           {renderTable(
             3,
             "प्रभाग क्र. ९ (ड)",
             10,
             <>
-              बालवडकर लहू गजानन<br />
+              बालवडकर लहू गजानन
+              <br />
               <span className="text-gray-600 text-xs">Balwadkar Lahu Gajanan</span>
             </>,
             3,
@@ -274,11 +271,10 @@ const SoundCheck = () => {
         </>
       )}
 
-
-  <h1 className="text-center text-xl font-bold mb-4 mt-6">
+      <h1 className="text-center text-xl font-bold mb-4 mt-6">
         <span className="text-red-600">कमळ </span> या निशाणी समोरील बटन दाबून{" "}
-        <span className="text-red-600">भारतीय जनता पक्षाच्या </span>
-        चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
+        <span className="text-red-600">भारतीय जनता पक्षाच्या </span>चारही उमेदवारांना
+        प्रचंड बहुमतांनी विजयी करा
       </h1>
 
       <div className="text-center mb-4 pt-2">
@@ -286,7 +282,6 @@ const SoundCheck = () => {
           मतदान - गुरुवार, दि. १५ जानेवारी २०२६ सकाळी ७:३० ते सायंकाळी ५.३० वाजेपर्यंत.
         </span>
       </div>
-    
 
       <audio ref={candidateSoundRef} src="/sound1.mp3" />
       <audio ref={otherSoundRef} src="/sound2.mp3" />
