@@ -120,12 +120,11 @@ const SoundCheck: React.FC = () => {
     const limit = end ?? totalRows;
 
     return (
-      <div className={`${bgColor}`}>
-        {!showThead && (
-          <div className="text-center font-bold py-2 border-2 border-gray-400">
-            {title}
-          </div>
-        )}
+      <div className={`${bgColor} mb-6`}>
+        {/* ✅ Table Title Outside Table */}
+        <h5 className="text-center text-xl font-bold py-3 border-2 border-gray-400 bg-white">
+          {title}
+        </h5>
 
         <table className="w-full border-collapse border-2 border-gray-400">
           {showThead && (
@@ -166,9 +165,21 @@ const SoundCheck: React.FC = () => {
         पुणे महानगरपालिका सार्वत्रिक निवडणूक - २०२६ डमी मतदान यंत्र
       </h1>
 
-      <div className="text-center mb-4 pt-2"> <span className="bg-blue-700 font-bold text-white px-4 py-2 inline-block rounded-full"> डेमो मतदानासाठी कमळ या निशाणी समोरील बटन दाबावे </span> </div> <h1 className="text-center text-xl font-bold mb-4 pt-2"> बाणेर-बालेवाडी-पाषाण-सोमेेश्वरवाडी-सुतारवाडी- सुस- महाळुंगे </h1> <div className="text-center mb-4 pt-2"> <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded dark:bg-yellow-300"> प्रभाग क्रमांक ०९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार </span> </div>
+      <div className="text-center mb-4 pt-2">
+        <span className="bg-blue-700 font-bold text-white px-4 py-2 inline-block rounded-full">
+          डेमो मतदानासाठी कमळ या निशाणी समोरील बटन दाबावे
+        </span>
+      </div>
 
-      <h5 className="text-center text-xl font-bold mb-4 pt-2">प्रभाग क्र. ०९ (अ)</h5>
+      <h1 className="text-center text-xl font-bold mb-4 pt-2">
+        बाणेर-बालेवाडी-पाषाण-सोमेेश्वरवाडी-सुतारवाडी- सुस- महाळुंगे
+      </h1>
+
+      <div className="text-center mb-4 pt-2">
+        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded dark:bg-yellow-300">
+          प्रभाग क्रमांक ०९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार
+        </span>
+      </div>
 
       {!showFourthTable && (
         <>
