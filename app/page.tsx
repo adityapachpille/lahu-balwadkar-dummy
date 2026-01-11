@@ -102,10 +102,22 @@ const SoundCheck = () => {
     rowEnd?: number
   ) => {
     const end = rowEnd ?? totalRows;
+
     return (
       <div className={`${tableBgColor} p-2 rounded-md mb-4`}>
         <h4 className="text-center text-xl font-bold mb-0 pt-2">{title}</h4>
         <table className="w-full border-2 border-gray-400 mt-2 bg-transparent">
+          {/* Consistent THEAD for all tables */}
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border-2 border-gray-400 text-xs w-10">अनु. क्र.</th>
+              <th className="border-2 border-gray-400 text-xs">{title}</th>
+              <th className="border-2 border-gray-400 text-xs">फोटो</th>
+              <th className="border-2 border-gray-400 text-xs">निशाणी</th>
+              <th className="border-2 border-gray-400 text-xs">बत्ती</th>
+              <th className="border-2 border-gray-400 text-xs">बटन</th>
+            </tr>
+          </thead>
           <tbody>
             {[...Array(end - rowStart)].map((_, i) =>
               renderRow(
