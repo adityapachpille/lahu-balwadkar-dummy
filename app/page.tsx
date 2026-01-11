@@ -49,7 +49,7 @@ const SoundCheck = () => {
     <thead>
       <tr className="bg-gray-100">
         <th className="border-2 border-gray-400 text-xs w-10">अनु. क्र.</th>
-        <th className="border-2 border-gray-400 text-xs">{title}</th>
+        <th className="border-2 border-gray-400 text-xs">उमेदवाराचे नाव</th>
         <th className="border-2 border-gray-400 text-xs">फोटो</th>
         <th className="border-2 border-gray-400 text-xs">निशाणी</th>
         <th className="border-2 border-gray-400 text-xs">बत्ती</th>
@@ -148,8 +148,11 @@ const SoundCheck = () => {
 
       {/* TABLE 1 */}
       {!showFourthTable && (
+       <h4 className="text-center text-xl font-bold mb-4 pt-2">
+        प्रभाग क्र. ९ (अ)
+      </h4>
         <table className="w-full border-2 border-gray-400 mt-4">
-          <TableHeader title="प्रभाग क्र. ९ (अ) उमेदवाराचे नाव" />
+         
           <tbody>
             {[...Array(4)].map((_, i) =>
               renderRow(
@@ -169,8 +172,11 @@ const SoundCheck = () => {
 
       {/* TABLE 2 */}
       {!showFourthTable && (
+       <h4 className="text-center text-xl font-bold mb-4 pt-2">
+        प्रभाग क्र. ९ (ब)
+      </h4>
         <table className="w-full border-2 border-gray-400 mt-6">
-          <TableHeader title="प्रभाग क्र. ९ (ब) उमेदवाराचे नाव" />
+         
           <tbody>
             {[...Array(8)].map((_, i) =>
               renderRow(
@@ -190,8 +196,11 @@ const SoundCheck = () => {
 
       {/* TABLE 3 */}
       {!showFourthTable && (
+      <h4 className="text-center text-xl font-bold mb-4 pt-2">
+        प्रभाग क्र. ९ (क)
+      </h4>
         <table className="w-full border-2 border-gray-400 mt-6">
-          <TableHeader title="प्रभाग क्र. ९ (क) उमेदवाराचे नाव" />
+        
           <tbody>
             {[...Array(5)].map((_, i) =>
               renderRow(
@@ -211,8 +220,12 @@ const SoundCheck = () => {
 
       {/* TABLE 4 */}
       {showFourthTable && (
+      <h4 className="text-center text-xl font-bold mb-4 pt-2">
+        प्रभाग क्र. ९ (ड)
+      </h4>
         <table className="w-full border-2 border-gray-400 mt-6">
-          <TableHeader title="प्रभाग क्र. ९ (ड) उमेदवाराचे नाव" />
+          
+         
           <tbody>
             {[...Array(10)].map((_, i) =>
               renderRow(
