@@ -98,28 +98,33 @@ const SoundCheck = () => {
     name: string,
     candidateIndex: number,
     imageSrc: string,
-    rowBgColor: string // Pass row background color dynamically
-  ) => (
-    <>
-      <h4 className="text-center text-xl font-bold mb-0 pt-2">{title}</h4>
-      <table className="w-full border-2 border-gray-400 mt-0">
-        <tbody>
-          {[...Array(totalRows)].map((_, i) =>
-            renderRow(
-              i,
-              tableIndex * 100,
-              name,
-              totalRows,
-              rowBgColor, // Apply correct row background
-              candidateIndex,
-              tableIndex,
-              imageSrc
-            )
-          )}
-        </tbody>
-      </table>
-    </>
-  );
+    rowBgColor: string,
+    rowStart = 0,
+    rowEnd?: number // For partial rendering
+  ) => {
+    const end = rowEnd ?? totalRows;
+    return (
+      <>
+        <h4 className="text-center text-xl font-bold mb-0 pt-2">{title}</h4>
+        <table className="w-full border-2 border-gray-400 mt-0">
+          <tbody>
+            {[...Array(end - rowStart)].map((_, i) =>
+              renderRow(
+                i + rowStart,
+                tableIndex * 100,
+                name,
+                totalRows,
+                rowBgColor,
+                candidateIndex,
+                tableIndex,
+                imageSrc
+              )
+            )}
+          </tbody>
+        </table>
+      </>
+    );
+  };
 
   return (
     <section className="bg-gray-100 px-4 py-6">
@@ -143,17 +148,26 @@ const SoundCheck = () => {
         </span>
       </div>
 
-      {/* TABLES 1-3 */}
+      {/* TABLES 1-2 */}
       {!showFourthTable &&
         renderTable(0, "प्रभाग क्र. ९ (अ)", 4, "चिमटे रोहिणी सुधीर", 0, "/use1.png", "bg-white")}
       {!showFourthTable &&
         renderTable(1, "प्रभाग क्र. ९ (ब)", 8, "कळमकर गणेश ज्ञानोबा", 0, "/use2.png", "bg-[#e8bbda]")}
+
+      {/* TABLE 3 (split) */}
       {!showFourthTable &&
-        renderTable(2, "प्रभाग क्र. ९ (क)", 5, "कोकाटे मयुरी राहुल", 0, "/use3.png", "bg-[#fdfda5]")}
+        renderTable(2, "प्रभाग क्र. ९ (क)", 5, "कोकाटे मयुरी राहुल", 0, "/use3.png", "bg-[#fdfda5]", 0, 2)}
 
       {/* TABLE 4 */}
       {showFourthTable &&
-        renderTable(3, "प्रभाग क्र. ९ (ड)", 10, "बालवडकर लहू गजानन", 3, "/use4.png", "bg-[#9fdaeb]")}
+        <>
+          {/* Remaining 3 rows of third table */}
+          {renderTable(2, "प्रभाग क्र. ९ (क) उर्वरित", 5, "कोकाटे मयुरी राहुल", 0, "/use3.png", "bg-[#fdfda5]", 2)}
+
+          {/* Existing fourth table */}
+          {renderTable(3, "प्रभाग क्र. ९ (ड)", 10, "बालवडकर लहू गजानन", 3, "/use4.png", "bg-[#9fdaeb]")}
+        </>
+      }
 
       {/* FOOTER MESSAGE */}
       <h1 className="text-center text-xl font-bold mb-2 mt-4">
