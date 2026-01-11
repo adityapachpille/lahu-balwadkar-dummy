@@ -64,15 +64,22 @@ const SoundCheck = () => {
           {toMarathi(index + 1)}
         </td>
 
-        {/* ✅ NAME + PHOTO IN ONE COLUMN */}
-        <td className="border-2 border-gray-400 text-sm font-bold text-center">
+        {/* ✅ NAME (LEFT) + BIG PHOTO (RIGHT) */}
+        <td className="border-2 border-gray-400 text-sm font-bold">
           {isCandidate && (
-            <>
-              <img src={imageSrc} className="w-10 h-10 mx-auto mb-1" />
-              {name}
-            </>
+            <div className="flex items-center justify-between gap-3 px-2">
+              <div className="text-left leading-tight">
+                {name}
+              </div>
+              <img
+                src={imageSrc}
+                className="w-16 h-16 object-contain"
+              />
+            </div>
           )}
-          {isNota && "नोटा (NOTA)"}
+          {isNota && (
+            <div className="text-center font-bold">नोटा (NOTA)</div>
+          )}
         </td>
 
         {/* निशाणी */}
