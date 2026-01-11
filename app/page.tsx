@@ -180,9 +180,10 @@ const SoundCheck: React.FC = () => {
 
       {!showFourthTable && (
         <>
-          <h5 className="text-center text-xl font-bold mb-4 pt-2">मशीन १</h5>
+          
 
           {renderTable(
+          <h5 className="text-center text-xl font-bold mb-4 pt-2">प्रभाग क्र. ९ (अ)</h5>
             0,
             "प्रभाग क्र. ९ (अ)",
             4,
@@ -212,8 +213,7 @@ const SoundCheck: React.FC = () => {
             false
           )}
 
-          {/* Insert heading here before the 3rd table */}
-          <h5 className="text-center text-xl font-bold mb-4 pt-2">मशीन २</h5>
+         
 
           {renderTable(
             2,
