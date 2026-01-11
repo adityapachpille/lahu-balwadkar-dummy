@@ -59,7 +59,6 @@ const SoundCheck = () => {
 
     return (
       <tr>
-        {/* अनु. क्र. – FIXED WIDTH */}
         <td className="border-2 border-gray-400 text-xs font-bold text-center w-[50px] min-w-[50px] max-w-[50px]">
           {toMarathi(index + 1)}
         </td>
@@ -118,6 +117,13 @@ const SoundCheck = () => {
 
     return (
       <div className={`${bgColor} p-0 m-0`}>
+        {/* 🔹 COLORED HEADING FOR SPLIT TABLES */}
+        {!showThead && (
+          <div className={`text-center font-bold py-2 border-2 border-gray-400 ${bgColor}`}>
+            {title}
+          </div>
+        )}
+
         <table className="w-full border-collapse border-2 border-gray-400">
           {showThead && (
             <thead>
