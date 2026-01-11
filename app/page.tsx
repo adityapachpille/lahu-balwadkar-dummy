@@ -78,19 +78,31 @@ const SoundCheck = () => {
           )}
         </td>
 
+        {/* SYMBOL */}
         <td className="border-2 border-gray-400 text-center w-[80px]">
           {isCandidate && (
             <img src="/symbol-bartan.png" className="w-12 h-12 mx-auto" />
           )}
         </td>
 
+        {/* BULB */}
+        <td className="border-2 border-gray-400 text-center w-[60px]">
+          <div
+            className={`w-5 h-5 mx-auto rounded-full ${
+              activeRow === baseIndex + index ? "bg-red-600" : "bg-gray-400"
+            }`}
+          />
+        </td>
+
+        {/* ARROW / CLOCK */}
         <td className="border-2 border-gray-400 text-center w-[60px]">
           {isCandidate && (
             <img src="/arrow-left.png" className="w-6 h-6 mx-auto" />
           )}
         </td>
 
-        <td className="border-2 border-gray-400 text-center w-[100px]">
+        {/* BUTTON */}
+        <td className="border-2 border-gray-400 text-center w-[100px] font-bold">
           <button
             onClick={() =>
               playSound(baseIndex + index, isCandidate, tableIndex)
@@ -133,10 +145,11 @@ const SoundCheck = () => {
                 <th className="border-2 border-gray-400 text-xs font-bold text-center w-[40px]">
                   अनु. क्र.
                 </th>
-                <th className="border-2 border-gray-400 text-xs">{title}</th>
-                <th className="border-2 border-gray-400 text-xs">निशाणी</th>
-                <th className="border-2 border-gray-400 text-xs">दिशा</th>
-                <th className="border-2 border-gray-400 text-xs">बटन</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">{title}</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">निशाणी</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">बत्ती</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">दिशा</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">बटन</th>
               </tr>
             </thead>
           )}
