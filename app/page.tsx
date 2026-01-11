@@ -35,7 +35,6 @@ const SoundCheck = () => {
 
     setActiveRow(index);
 
-    // Track candidate clicks
     if (isCandidate && tableIndex < 3) {
       const updatedClicks = [...candidateClicks];
       updatedClicks[tableIndex] = true;
@@ -84,12 +83,35 @@ const SoundCheck = () => {
         <td className="border-2 border-gray-400 text-center">
           <button
             onClick={() => playSound(baseIndex + index, isCandidate, tableIndex)}
-            className="rounded-full w-12 h-6 bg-blue-700"
-          />
+            className="rounded-full w-24 h-6 bg-blue-700 text-white text-xs font-bold"
+          >
+            {isCandidate ? "बटन दाबा" : ""}
+          </button>
         </td>
       </tr>
     );
   };
+
+  const renderTable = (
+    tableIndex: number,
+    title: string,
+    totalRows: number,
+    name: string,
+    bgColor: string,
+    candidateIndex: number,
+    imageSrc: string
+  ) => (
+    <>
+      <h4 className="text-center text-xl font-bold mb-0 pt-2">{title}</h4>
+      <table className="w-full border-2 border-gray-400 mt-0">
+        <tbody>
+          {[...Array(totalRows)].map((_, i) =>
+            renderRow(i, tableIndex * 100, name, totalRows, bgColor, candidateIndex, tableIndex, imageSrc)
+          )}
+        </tbody>
+      </table>
+    </>
+  );
 
   return (
     <section className="bg-gray-100 px-4 py-6">
@@ -113,61 +135,14 @@ const SoundCheck = () => {
         </span>
       </div>
 
-      {/* TABLE 1 */}
-      {!showFourthTable && (
-        <>
-          <h4 className="text-center text-xl font-bold mb-0 pt-2">प्रभाग क्र. ९ (अ)</h4>
-          <table className="w-full border-2 border-gray-400 mt-0">
-            <tbody>
-              {[...Array(4)].map((_, i) =>
-                renderRow(i, 0, "चिमटे रोहिणी सुधीर", 4, "bg-white", 0, 0, "/use1.png")
-              )}
-            </tbody>
-          </table>
-        </>
-      )}
-
-      {/* TABLE 2 */}
-      {!showFourthTable && (
-        <>
-          <h4 className="text-center text-xl font-bold mb-0 pt-2">प्रभाग क्र. ९ (ब)</h4>
-          <table className="w-full border-2 border-gray-400 mt-0">
-            <tbody>
-              {[...Array(8)].map((_, i) =>
-                renderRow(i, 100, "कळमकर गणेश ज्ञानोबा", 8, "bg-[#e8bbda]", 0, 1, "/use2.png")
-              )}
-            </tbody>
-          </table>
-        </>
-      )}
-
-      {/* TABLE 3 */}
-      {!showFourthTable && (
-        <>
-          <h4 className="text-center text-xl font-bold mb-0 pt-2">प्रभाग क्र. ९ (क)</h4>
-          <table className="w-full border-2 border-gray-400 mt-0">
-            <tbody>
-              {[...Array(5)].map((_, i) =>
-                renderRow(i, 200, "कोकाटे मयुरी राहुल", 5, "bg-[#fdfda5]", 0, 2, "/use3.png")
-              )}
-            </tbody>
-          </table>
-        </>
-      )}
+      {/* TABLES 1-3 */}
+      {!showFourthTable && renderTable(0, "प्रभाग क्र. ९ (अ)", 4, "चिमटे रोहिणी सुधीर", "bg-white", 0, "/use1.png")}
+      {!showFourthTable && renderTable(1, "प्रभाग क्र. ९ (ब)", 8, "कळमकर गणेश ज्ञानोबा", "bg-[#e8bbda]", 0, "/use2.png")}
+      {!showFourthTable && renderTable(2, "प्रभाग क्र. ९ (क)", 5, "कोकाटे मयुरी राहुल", "bg-[#fdfda5]", 0, "/use3.png")}
 
       {/* TABLE 4 */}
-      {showFourthTable && (
-        <>
-          <h4 className="text-center text-xl font-bold mb-0 pt-2">प्रभाग क्र. ९ (ड)</h4>
-          <table className="w-full border-2 border-gray-400 mt-0">
-            <tbody>
-              {[...Array(10)].map((_, i) =>
-                renderRow(i, 300, "बालवडकर लहू गजानन", 10, "bg-[#9fdaeb]", 3, 3, "/use4.png")
-              )}
-            </tbody>
-          </table>
-        </>
-      )}
+      {showFourthTable &&
+        renderTable(3, "प्रभाग क्र. ९ (ड)", 10, "बालवडकर लहू गजानन", "bg-[#9fdaeb]", 3, "/use4.png")}
 
       {/* FOOTER MESSAGE */}
       <h1 className="text-center text-xl font-bold mb-2 mt-4">
