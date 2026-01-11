@@ -102,7 +102,7 @@ const SoundCheck = () => {
             }
             className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
           >
-            {isCandidate ? "बटन दबा" : ""}
+            {isCandidate ? "बटन दाबा" : ""}
           </button>
         </td>
       </tr>
@@ -138,7 +138,7 @@ const SoundCheck = () => {
                 <th className="border-2 border-gray-400 text-xs font-bold text-center w-[40px]">
                   अनु. क्र.
                 </th>
-                <th className="border-2 border-gray-400 text-xs font-bold">{title}</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">उमेदवाराचे नाव</th>
                 <th className="border-2 border-gray-400 text-xs font-bold">निशाणी</th>
                 <th className="border-2 border-gray-400 text-xs font-bold">बत्ती</th>
                 <th className="border-2 border-gray-400 text-xs font-bold">बटन</th>
@@ -165,9 +165,32 @@ const SoundCheck = () => {
   };
 
   return (
+    <h1 className="text-center text-xl font-bold mb-4 pt-2">
+        पुणे महानगरपालिका सार्वत्रिक निवडणूक - २०२६ डमी मतदान यंत्र
+      </h1>
+
+      <div className="text-center mb-4 pt-2">
+        <span className="bg-blue-700 font-bold text-white px-4 py-2 inline-block rounded-full">
+          डेमो मतदानासाठी कमळ या निशाणी समोरील बटन दाबावे
+        </span>
+      </div>
+
+      <h1 className="text-center text-xl font-bold mb-4 pt-2">
+        बाणेर-बालेवाडी-पाषाण-सोमेेश्वरवाडी-सुतारवाडी- सुस- महाळुंगे
+      </h1>
+
+      <div className="text-center mb-4 pt-2">
+        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded dark:bg-yellow-300">
+          प्रभाग क्रमांक ९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार
+        </span>
+      </div>
+    
     <section className="bg-gray-100 px-4 py-4">
       {!showFourthTable && (
         <>
+          <h5 className="text-center text-xl font-bold mb-4 pt-2">
+        मशीन १
+      </h5>
           {renderTable(
             0,
             "प्रभाग क्र. ९ (अ)",
@@ -228,6 +251,9 @@ const SoundCheck = () => {
             true,
             2
           )}
+             <h5 className="text-center text-xl font-bold mb-4 pt-2">
+        मशीन २
+      </h5>
           {renderTable(
             3,
             "प्रभाग क्र. ९ (ड)",
@@ -243,6 +269,20 @@ const SoundCheck = () => {
           )}
         </>
       )}
+
+
+  <h1 className="text-center text-xl font-bold mb-4 mt-6">
+        <span className="text-red-600">कमळ </span> या निशाणी समोरील बटन दाबून{" "}
+        <span className="text-red-600">भारतीय जनता पक्षाच्या .</span>
+        चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
+      </h1>
+
+      <div className="text-center mb-4 pt-2">
+        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded">
+          मतदान - गुरुवार, दि. १५ जानेवारी २०२६ सकाळी ७:३० ते सायंकाळी ५.३० वाजेपर्यंत.
+        </span>
+      </div>
+    
 
       <audio ref={candidateSoundRef} src="/sound1.mp3" />
       <audio ref={otherSoundRef} src="/sound2.mp3" />
