@@ -166,15 +166,15 @@ const SoundCheck: React.FC = () => {
         पुणे महानगरपालिका सार्वत्रिक निवडणूक - २०२६ डमी मतदान यंत्र
       </h1>
 
-      <div className="text-center mb-4 pt-2"> <span className="bg-blue-700 font-bold text-white px-4 py-2 inline-block rounded-full"> डेमो मतदानासाठी कमळ या निशाणी समोरील बटन दाबावे </span> </div> <h1 className="text-center text-xl font-bold mb-4 pt-2"> बाणेर-बालेवाडी-पाषाण-सोमेेश्वरवाडी-सुतारवाडी- सुस- महाळुंगे </h1> <div className="text-center mb-4 pt-2"> <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded dark:bg-yellow-300"> प्रभाग क्रमांक ९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार </span> </div>
+      <div className="text-center mb-4 pt-2"> <span className="bg-blue-700 font-bold text-white px-4 py-2 inline-block rounded-full"> डेमो मतदानासाठी कमळ या निशाणी समोरील बटन दाबावे </span> </div> <h1 className="text-center text-xl font-bold mb-4 pt-2"> बाणेर-बालेवाडी-पाषाण-सोमेेश्वरवाडी-सुतारवाडी- सुस- महाळुंगे </h1> <div className="text-center mb-4 pt-2"> <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded dark:bg-yellow-300"> प्रभाग क्रमांक ०९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार </span> </div>
 
-      <h5 className="text-center text-xl font-bold mb-4 pt-2">प्रभाग क्र. ९ (अ)</h5>
+      <h5 className="text-center text-xl font-bold mb-4 pt-2">प्रभाग क्र. ०९ (अ)</h5>
 
       {!showFourthTable && (
         <>
           {renderTable(
             0,
-            "प्रभाग क्र. ९ (अ)",
+            "प्रभाग क्र. ०९ (अ)",
             4,
             <>चिमटे रोहिणी सुधीर</>,
             0,
@@ -185,7 +185,7 @@ const SoundCheck: React.FC = () => {
 
           {renderTable(
             1,
-            "प्रभाग क्र. ९ (ब)",
+            "प्रभाग क्र. ०९ (ब)",
             8,
             <>कळमकर गणेश ज्ञानोबा</>,
             0,
@@ -196,7 +196,7 @@ const SoundCheck: React.FC = () => {
 
           {renderTable(
             2,
-            "प्रभाग क्र. ९ (क)",
+            "प्रभाग क्र. ०९ (क)",
             5,
             <>कोकाटे मयुरी राहुल</>,
             0,
@@ -213,7 +213,7 @@ const SoundCheck: React.FC = () => {
         <>
           {renderTable(
             2,
-            "प्रभाग क्र. ९ (क)",
+            "प्रभाग क्र. ०९ (क)",
             5,
             <>कोकाटे मयुरी राहुल</>,
             0,
@@ -225,7 +225,7 @@ const SoundCheck: React.FC = () => {
 
           {renderTable(
             3,
-            "प्रभाग क्र. ९ (ड)",
+            "प्रभाग क्र. ०९ (ड)",
             10,
             <>बालवडकर लहू गजानन</>,
             3,
