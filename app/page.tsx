@@ -59,26 +59,30 @@ const SoundCheck = () => {
 
     return (
       <tr>
+        {/* अनु. क्र. */}
         <td className="border-2 border-gray-400 text-xs font-bold text-center w-[50px] min-w-[50px] max-w-[50px]">
           {toMarathi(index + 1)}
         </td>
 
+        {/* ✅ NAME + PHOTO IN ONE COLUMN */}
         <td className="border-2 border-gray-400 text-sm font-bold text-center">
-          {isCandidate ? name : isNota ? "नोटा (NOTA)" : ""}
-        </td>
-
-        <td className="border-2 border-gray-400 text-center">
           {isCandidate && (
-            <img src={imageSrc} className="w-10 h-10 mx-auto" />
+            <>
+              <img src={imageSrc} className="w-10 h-10 mx-auto mb-1" />
+              {name}
+            </>
           )}
+          {isNota && "नोटा (NOTA)"}
         </td>
 
+        {/* निशाणी */}
         <td className="border-2 border-gray-400 text-center">
           {isCandidate && (
             <img src="/symbol-bartan.png" className="w-10 h-10 mx-auto" />
           )}
         </td>
 
+        {/* बत्ती */}
         <td className="border-2 border-gray-400 text-center">
           <div
             className={`w-5 h-5 mx-auto rounded-full ${
@@ -87,6 +91,7 @@ const SoundCheck = () => {
           />
         </td>
 
+        {/* बटन */}
         <td className="border-2 border-gray-400 text-center">
           <button
             onClick={() =>
@@ -117,7 +122,6 @@ const SoundCheck = () => {
 
     return (
       <div className={`${bgColor} p-0 m-0`}>
-        {/* 🔹 COLORED HEADING FOR SPLIT TABLES */}
         {!showThead && (
           <div className={`text-center font-bold py-2 border-2 border-gray-400 ${bgColor}`}>
             {title}
@@ -128,11 +132,10 @@ const SoundCheck = () => {
           {showThead && (
             <thead>
               <tr className="bg-gray-100">
-                <th className="border-2 border-gray-400 text-xs font-bold text-center w-[50px] min-w-[50px] max-w-[50px]">
+                <th className="border-2 border-gray-400 text-xs font-bold text-center w-[50px]">
                   अनु. क्र.
                 </th>
                 <th className="border-2 border-gray-400 text-xs">{title}</th>
-                <th className="border-2 border-gray-400 text-xs">फोटो</th>
                 <th className="border-2 border-gray-400 text-xs">निशाणी</th>
                 <th className="border-2 border-gray-400 text-xs">बत्ती</th>
                 <th className="border-2 border-gray-400 text-xs">बटन</th>
@@ -162,67 +165,16 @@ const SoundCheck = () => {
     <section className="bg-gray-100 px-4 py-4">
       {!showFourthTable && (
         <>
-          {renderTable(
-            0,
-            "प्रभाग क्र. ९ (अ)",
-            4,
-            "चिमटे रोहिणी सुधीर",
-            0,
-            "/use1.png",
-            "bg-white",
-            true
-          )}
-
-          {renderTable(
-            1,
-            "प्रभाग क्र. ९ (ब)",
-            8,
-            "कळमकर गणेश ज्ञानोबा",
-            0,
-            "/use2.png",
-            "bg-[#e8bbda]",
-            false
-          )}
-
-          {renderTable(
-            2,
-            "प्रभाग क्र. ९ (क)",
-            5,
-            "कोकाटे मयुरी राहुल",
-            0,
-            "/use3.png",
-            "bg-[#fdfda5]",
-            false,
-            0,
-            2
-          )}
+          {renderTable(0,"प्रभाग क्र. ९ (अ)",4,"चिमटे रोहिणी सुधीर",0,"/use1.png","bg-white",true)}
+          {renderTable(1,"प्रभाग क्र. ९ (ब)",8,"कळमकर गणेश ज्ञानोबा",0,"/use2.png","bg-[#e8bbda]",false)}
+          {renderTable(2,"प्रभाग क्र. ९ (क)",5,"कोकाटे मयुरी राहुल",0,"/use3.png","bg-[#fdfda5]",false,0,2)}
         </>
       )}
 
       {showFourthTable && (
         <>
-          {renderTable(
-            2,
-            "प्रभाग क्र. ९ (क)",
-            5,
-            "कोकाटे मयुरी राहुल",
-            0,
-            "/use3.png",
-            "bg-[#fdfda5]",
-            true,
-            2
-          )}
-
-          {renderTable(
-            3,
-            "प्रभाग क्र. ९ (ड)",
-            10,
-            "बालवडकर लहू गजानन",
-            3,
-            "/use4.png",
-            "bg-[#9fdaeb]",
-            false
-          )}
+          {renderTable(2,"प्रभाग क्र. ९ (क)",5,"कोकाटे मयुरी राहुल",0,"/use3.png","bg-[#fdfda5]",true,2)}
+          {renderTable(3,"प्रभाग क्र. ९ (ड)",10,"बालवडकर लहू गजानन",3,"/use4.png","bg-[#9fdaeb]",false)}
         </>
       )}
 
