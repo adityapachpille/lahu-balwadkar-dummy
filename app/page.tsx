@@ -63,13 +63,14 @@ const SoundCheck = () => {
           {toMarathi(index + 1)}
         </td>
 
+        {/* NAME FIRST + PHOTO NEXT */}
         <td className="border-2 border-gray-400 w-[220px]">
           {isCandidate && (
             <div className="flex items-center gap-3 px-2 py-1">
-              <img src={imageSrc} className="w-16 h-16 object-cover rounded" />
               <div className="leading-tight font-bold text-sm">
                 {name}
               </div>
+              <img src={imageSrc} className="w-16 h-16 object-cover rounded" />
             </div>
           )}
           {isNota && (
