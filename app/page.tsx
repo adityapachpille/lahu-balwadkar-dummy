@@ -7,6 +7,7 @@ const SoundCheck = () => {
   const otherSoundRef = useRef<HTMLAudioElement | null>(null);
 
   const [activeRow, setActiveRow] = useState<number | null>(null);
+  const [candidateClicks, setCandidateClicks] = useState([false, false, false]);
   const [showFourthTable, setShowFourthTable] = useState(false);
 
   const toMarathi = (num: number) =>
@@ -23,15 +24,8 @@ const SoundCheck = () => {
       .replace(/8/g, "८")
       .replace(/9/g, "९");
 
-  const playSound = (
-    index: number,
-    isCandidate: boolean,
-    triggerFourthTable = false
-  ) => {
-    const audio = isCandidate
-      ? candidateSoundRef.current
-      : otherSoundRef.current;
-
+  const playSound = (index: number, isCandidate: boolean, tableIndex: number) => {
+    const audio = isCandidate ? candidateSoundRef.current : otherSoundRef.current;
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
@@ -40,80 +34,73 @@ const SoundCheck = () => {
 
     setActiveRow(index);
 
-    if (triggerFourthTable && isCandidate) {
-      setShowFourthTable(true);
+    if (isCandidate && tableIndex < 3) {
+      const updated = [...candidateClicks];
+      updated[tableIndex] = true;
+      setCandidateClicks(updated);
+
+      if (updated.every(Boolean)) {
+        setShowFourthTable(true);
+      }
     }
   };
-
-  const TableHeader = ({ title }: { title: string }) => (
-    <thead>
-      <tr className="bg-gray-100">
-        <th className="border-2 border-gray-400 text-xs w-10">अनु. क्र.</th>
-        <th className="border-2 border-gray-400 text-xs">{title}</th>
-        <th className="border-2 border-gray-400 text-xs">फोटो</th>
-        <th className="border-2 border-gray-400 text-xs">निशाणी</th>
-        <th className="border-2 border-gray-400 text-xs">बत्ती</th>
-        <th className="border-2 border-gray-400 text-xs">बटन</th>
-      </tr>
-    </thead>
-  );
 
   const renderRow = (
     index: number,
     baseIndex: number,
-    name: string,
+    name: React.ReactNode,
     totalRows: number,
-    candidateIndex = 0,
-    triggerFourthTable = false,
-    imageSrc?: string
+    candidateIndex: number,
+    tableIndex: number,
+    imageSrc: string
   ) => {
     const isCandidate = index === candidateIndex;
     const isNota = index === totalRows - 1;
 
     return (
-      <tr key={index}>
-        <td className="border-2 border-gray-400 text-center font-bold text-xs">
+      <tr className="align-middle">
+        <td className="border-2 border-gray-400 text-xs font-bold text-center w-[40px]">
           {toMarathi(index + 1)}
         </td>
 
-        <td className="border-2 border-gray-400 text-center font-bold text-sm">
-          {isCandidate ? name : isNota ? "नोटा (NOTA)" : ""}
-        </td>
-
-        <td className="border-2 border-gray-400 text-center">
-          {isCandidate && imageSrc && (
-            <img src={imageSrc} className="w-10 h-10 mx-auto" />
-          )}
-        </td>
-
-        <td className="border-2 border-gray-400 text-center">
+        {/* NAME FIRST + PHOTO NEXT (smaller width) */}
+        <td className="border-2 border-gray-400 w-[180px]">
           {isCandidate && (
-            <img src="/symbol-bartan.png" className="w-10 h-10 mx-auto" />
+            <div className="flex items-center gap-3 px-2 py-1">
+              <div className="leading-tight font-bold text-sm">
+                {name}
+              </div>
+              <img src={imageSrc} className="w-16 h-16 object-cover rounded" />
+            </div>
+          )}
+          {isNota && (
+            <div className="text-center font-bold py-4">नोटा (NOTA)</div>
           )}
         </td>
 
-        <td className="border-2 border-gray-400 text-center">
+        {/* SYMBOL (bigger width + bigger logo) */}
+        <td className="border-2 border-gray-400 text-center w-[120px]">
+          {isCandidate && (
+            <img src="/symbol-bartan.png" className="w-16 h-16 mx-auto" />
+          )}
+        </td>
+
+        {/* BULB */}
+        <td className="border-2 border-gray-400 text-center w-[60px]">
           <div
             className={`w-5 h-5 mx-auto rounded-full ${
-              activeRow === baseIndex + index
-                ? "bg-red-600"
-                : "bg-gray-400"
+              activeRow === baseIndex + index ? "bg-red-600" : "bg-gray-400"
             }`}
           />
         </td>
 
-        <td className="border-2 border-gray-400 text-center">
+        {/* BUTTON (always visible, text only for candidate) */}
+        <td className="border-2 border-gray-400 text-center w-[100px] font-bold">
           <button
             onClick={() =>
-              playSound(
-                baseIndex + index,
-                isCandidate,
-                triggerFourthTable
-              )
+              playSound(baseIndex + index, isCandidate, tableIndex)
             }
-            className={`rounded-full w-12 h-6 ${
-              isCandidate ? "bg-green-500" : "bg-blue-700"
-            }`}
+            className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
           >
             {isCandidate ? "बटन दबा" : ""}
           </button>
@@ -122,91 +109,141 @@ const SoundCheck = () => {
     );
   };
 
+  const renderTable = (
+    tableIndex: number,
+    title: string,
+    totalRows: number,
+    name: React.ReactNode,
+    candidateIndex: number,
+    imageSrc: string,
+    bgColor: string,
+    showThead: boolean,
+    start = 0,
+    end?: number
+  ) => {
+    const limit = end ?? totalRows;
+
+    return (
+      <div className={`${bgColor} p-0 m-0`}>
+        {!showThead && (
+          <div className={`text-center font-bold py-2 border-2 border-gray-400 ${bgColor}`}>
+            {title}
+          </div>
+        )}
+
+        <table className="w-full border-collapse border-2 border-gray-400">
+          {showThead && (
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border-2 border-gray-400 text-xs font-bold text-center w-[40px]">
+                  अनु. क्र.
+                </th>
+                <th className="border-2 border-gray-400 text-xs font-bold">{title}</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">निशाणी</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">बत्ती</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">बटन</th>
+              </tr>
+            </thead>
+          )}
+
+          <tbody>
+            {[...Array(limit - start)].map((_, i) =>
+              renderRow(
+                i + start,
+                tableIndex * 100,
+                name,
+                totalRows,
+                candidateIndex,
+                tableIndex,
+                imageSrc
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+
   return (
-    <section className="bg-gray-100 px-4 py-6">
-
-      <h1 className="text-center text-xl font-bold mb-4 pt-2">
-        पुणे महानगरपालिका सार्वत्रिक निवडणूक - २०२६ डमी मतदान यंत्र
-      </h1>
-
-      <div className="text-center mb-4 pt-2">
-        <span className="bg-blue-700 font-bold text-white px-4 py-2 inline-block rounded-full">
-          डेमो मतदानासाठी कमळ या निशाणी समोरील बटन दाबावे
-        </span>
-      </div>
-
-      <h1 className="text-center text-xl font-bold mb-4 pt-2">
-        बाणेर-बालेवाडी-पाषाण-सोमेेश्वरवाडी-सुतारवाडी- सुस- महाळुंगे
-      </h1>
-
-      <div className="text-center mb-4 pt-2">
-        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded dark:bg-yellow-300">
-          प्रभाग क्रमांक ९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार
-        </span>
-      </div>
-
-      {/* TABLE 1 */}
+    <section className="bg-gray-100 px-4 py-4">
       {!showFourthTable && (
-        <table className="w-full border-2 border-gray-400 mt-4 bg-white">
-          <TableHeader title="प्रभाग क्र. ९ (अ) उमेदवाराचे नाव" />
-          <tbody>
-            {[...Array(4)].map((_, i) =>
-              renderRow(i, 0, "चिमटे रोहिणी सुधीर", 4, 0, false, "/use1.png")
-            )}
-          </tbody>
-        </table>
+        <>
+          {renderTable(
+            0,
+            "प्रभाग क्र. ९ (अ)",
+            4,
+            <>
+              चिमटे रोहिणी सुधीर<br />
+              <span className="text-gray-600 text-xs">Chimate Rohini Sudheer</span>
+            </>,
+            0,
+            "/use1.png",
+            "bg-white",
+            true
+          )}
+          {renderTable(
+            1,
+            "प्रभाग क्र. ९ (ब)",
+            8,
+            <>
+              कळमकर गणेश ज्ञानोबा<br />
+              <span className="text-gray-600 text-xs">Kalamkar Ganesh Dnyanoba</span>
+            </>,
+            0,
+            "/use2.png",
+            "bg-[#e8bbda]",
+            false
+          )}
+          {renderTable(
+            2,
+            "प्रभाग क्र. ९ (क)",
+            5,
+            <>
+              कोकाटे मयुरी राहुल<br />
+              <span className="text-gray-600 text-xs">Kokate Mayuri Rahul</span>
+            </>,
+            0,
+            "/use3.png",
+            "bg-[#fdfda5]",
+            false,
+            0,
+            2
+          )}
+        </>
       )}
 
-      {/* TABLE 2 */}
-      {!showFourthTable && (
-        <table className="w-full border-2 border-gray-400 mt-6 bg-white">
-          <TableHeader title="प्रभाग क्र. ९ (ब) उमेदवाराचे नाव" />
-          <tbody>
-            {[...Array(8)].map((_, i) =>
-              renderRow(i, 100, "कळमकर गणेश ज्ञानोबा", 8, 0, false, "/use2.png")
-            )}
-          </tbody>
-        </table>
-      )}
-
-      {/* TABLE 3 */}
-      {!showFourthTable && (
-        <table className="w-full border-2 border-gray-400 mt-6 bg-white">
-          <TableHeader title="प्रभाग क्र. ९ (क) उमेदवाराचे नाव" />
-          <tbody>
-            {[...Array(5)].map((_, i) =>
-              renderRow(i, 200, "कोकाटे मयुरी राहुल", 5, 0, true, "/use3.png")
-            )}
-          </tbody>
-        </table>
-      )}
-
-      {/* TABLE 4 */}
       {showFourthTable && (
-        <table className="w-full border-2 border-gray-400 mt-6 bg-white">
-          <TableHeader title="प्रभाग क्र. ९ (ड) उमेदवाराचे नाव" />
-          <tbody>
-            {[...Array(10)].map((_, i) =>
-              renderRow(i, 300, "बालवडकर लहू गजानन", 10, 3, false, "/use4.png")
-            )}
-          </tbody>
-        </table>
+        <>
+          {renderTable(
+            2,
+            "प्रभाग क्र. ९ (क)",
+            5,
+            <>
+              कोकाटे मयुरी राहुल<br />
+              <span className="text-gray-600 text-xs">Kokate Mayuri Rahul</span>
+            </>,
+            0,
+            "/use3.png",
+            "bg-[#fdfda5]",
+            true,
+            2
+          )}
+          {renderTable(
+            3,
+            "प्रभाग क्र. ९ (ड)",
+            10,
+            <>
+              बालवडकर लहू गजानन<br />
+              <span className="text-gray-600 text-xs">Balwadkar Lahu Gajanan</span>
+            </>,
+            3,
+            "/use4.png",
+            "bg-[#9fdaeb]",
+            false
+          )}
+        </>
       )}
 
-      {/* ================= FOOTER MESSAGE ================= */}
-      <h1 className="text-center text-xl font-bold mb-4 mt-6">
-        <span className="text-red-600">कमळ </span> या निशाणी समोरील बटन दाबून{" "}
-        <span className="text-red-600">भारतीय जनता पक्षाच्या .</span>
-        चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
-      </h1>
-
-      <div className="text-center mb-4 pt-2">
-        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded">
-          मतदान - गुरुवार, दि. १५ जानेवारी २०२६ सकाळी ७:३० ते सायंकाळी ५.३० वाजेपर्यंत.
-        </span>
-      </div>
-
-      {/* AUDIO */}
       <audio ref={candidateSoundRef} src="/sound1.mp3" />
       <audio ref={otherSoundRef} src="/sound2.mp3" />
     </section>
