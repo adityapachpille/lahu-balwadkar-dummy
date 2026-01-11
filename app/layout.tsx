@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/Footer";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+
+const geistSans = Geist({
   variable: "--font-geist-sans",
-  weight: "100 900",
+  subsets: ["latin"],
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+
+const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  weight: "100 900",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Prashant Bhadane Patil Dummy Vote",
-  description: "Created By ARP Digital Solutions",
+  title: "डिजिटल डमी मतदान यंत्र",
+  description: "प्रभाग क्रमांक ९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार",
 };
 
 export default function RootLayout({
@@ -30,8 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-
-        <Footer />
+       
       </body>
     </html>
   );
