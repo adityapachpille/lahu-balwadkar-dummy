@@ -38,7 +38,6 @@ const SoundCheck: React.FC = () => {
 
     setActiveRow(index);
 
-    // 👉 POPUP ONLY FOR BALWADKAR (4TH TABLE)
     if (isCandidate && tableIndex === 3) {
       setShowPopup(true);
     }
@@ -76,45 +75,31 @@ const SoundCheck: React.FC = () => {
           {isCandidate && (
             <div className="flex items-center gap-3 px-2 py-1">
               <div className="leading-tight font-bold text-sm">{name}</div>
-              <img
-                src={imageSrc}
-                alt=""
-                className="w-16 h-16 rounded object-cover"
-              />
+              <img src={imageSrc} alt="" className="w-16 h-16 rounded object-cover" />
             </div>
           )}
           {isNota && (
-            <div className="text-center font-bold py-4">
-              नोटा (NOTA)
-            </div>
+            <div className="text-center font-bold py-4">नोटा (NOTA)</div>
           )}
         </td>
 
         <td className="border-2 border-gray-400 text-center w-[120px]">
           {isCandidate && (
-            <img
-              src="/symbol-bartan.png"
-              alt=""
-              className="w-16 h-16 mx-auto"
-            />
+            <img src="/symbol-bartan.png" alt="" className="w-16 h-16 mx-auto" />
           )}
         </td>
 
         <td className="border-2 border-gray-400 text-center w-[60px]">
           <div
             className={`w-5 h-5 mx-auto rounded-full ${
-              activeRow === baseIndex + index
-                ? "bg-red-600"
-                : "bg-gray-400"
+              activeRow === baseIndex + index ? "bg-red-600" : "bg-gray-400"
             }`}
           />
         </td>
 
         <td className="border-2 border-gray-400 text-center w-[100px] font-bold">
           <button
-            onClick={() =>
-              playSound(baseIndex + index, isCandidate, tableIndex)
-            }
+            onClick={() => playSound(baseIndex + index, isCandidate, tableIndex)}
             className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
           >
             {isCandidate ? "बटन दाबा" : ""}
@@ -140,10 +125,7 @@ const SoundCheck: React.FC = () => {
 
     return (
       <div className={bgColor}>
-        {/* TABLE TITLE (same background color) */}
-        <h5
-          className={`text-center text-xl font-bold py-3 border-2 border-gray-400 ${bgColor}`}
-        >
+        <h5 className={`text-center text-xl font-bold py-3 border-2 border-gray-400 ${bgColor}`}>
           {title}
         </h5>
 
@@ -151,21 +133,11 @@ const SoundCheck: React.FC = () => {
           {showThead && (
             <thead>
               <tr className="bg-gray-100">
-                <th className="border-2 border-gray-400 text-xs font-bold text-center w-[40px]">
-                  अनु. क्र.
-                </th>
-                <th className="border-2 border-gray-400 text-xs font-bold">
-                  उमेदवाराचे नाव
-                </th>
-                <th className="border-2 border-gray-400 text-xs font-bold">
-                  निशाणी
-                </th>
-                <th className="border-2 border-gray-400 text-xs font-bold">
-                  बत्ती
-                </th>
-                <th className="border-2 border-gray-400 text-xs font-bold">
-                  बटन
-                </th>
+                <th className="border-2 border-gray-400 text-xs font-bold w-[40px]">अनु. क्र.</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">उमेदवाराचे नाव</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">निशाणी</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">बत्ती</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">बटन</th>
               </tr>
             </thead>
           )}
@@ -190,28 +162,12 @@ const SoundCheck: React.FC = () => {
 
   return (
     <section className="bg-gray-100 px-4 py-4">
-      <h1 className="text-center text-xl font-bold mb-4">
-        पुणे महानगरपालिका सार्वत्रिक निवडणूक - २०२६ डमी मतदान यंत्र
-      </h1>
-
-      <div className="text-center mb-4 pt-2">
-        <span className="bg-blue-700 font-bold text-white px-4 py-2 inline-block rounded-full">
-          डेमो मतदानासाठी कमळ या निशाणी समोरील बटन दाबावे
-        </span>
-      </div>
-
-      <h1 className="text-center text-xl font-bold mb-4 pt-2">
-        बाणेर-बालेवाडी-पाषाण-सोमेेश्वरवाडी-सुतारवाडी- सुस- महाळुंगे
-      </h1>
-
-      <div className="text-center mb-4 pt-2">
-        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded">
-          प्रभाग क्रमांक ०९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार
-        </span>
-      </div>
 
       {!showFourthTable && (
         <>
+          {/* 🔴 मशीन १ */}
+          <h2 className="text-center text-2xl font-extrabold my-3">मशिन १</h2>
+
           {renderTable(
             0,
             "प्रभाग क्र. ०९ (अ)",
@@ -251,6 +207,9 @@ const SoundCheck: React.FC = () => {
 
       {showFourthTable && (
         <>
+          {/* 🔵 मशीन २ */}
+          <h2 className="text-center text-2xl font-extrabold my-3">मशिन २</h2>
+
           {renderTable(
             2,
             "प्रभाग क्र. ०९ (क)",
@@ -276,37 +235,19 @@ const SoundCheck: React.FC = () => {
         </>
       )}
 
-      {/* POPUP */}
       {showPopup && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-white p-4 rounded-lg relative max-w-md w-full mx-4">
+          <div className="bg-white p-4 rounded-lg relative max-w-md w-full">
             <button
               onClick={() => setShowPopup(false)}
               className="absolute top-2 right-2 text-xl font-bold text-red-600"
             >
               ✕
             </button>
-            <img
-              src="/balwadkar-popup.jpg"
-              alt="Balwadkar Lahu Gajanan"
-              className="w-full rounded"
-            />
+            <img src="/balwadkar-popup.jpg" alt="" className="w-full rounded" />
           </div>
         </div>
       )}
-
-      <h1 className="text-center text-xl font-bold mb-4 mt-6">
-        <span className="text-red-600">कमळ </span>
-        या निशाणी समोरील बटन दाबून{" "}
-        <span className="text-red-600">भारतीय जनता पक्षाच्या </span>
-        चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
-      </h1>
-
-      <div className="text-center mb-4 pt-2">
-        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded">
-          मतदान - गुरुवार, दि. १५ जानेवारी २०२६ सकाळी ७:३० ते सायंकाळी ५.३० वाजेपर्यंत.
-        </span>
-      </div>
 
       <audio ref={candidateSoundRef} src="/sound1.mp3" />
       <audio ref={otherSoundRef} src="/sound2.mp3" />
