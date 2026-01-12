@@ -181,6 +181,16 @@ const SoundCheck: React.FC = () => {
         </span>
       </div>
 
+        <h1 className="text-center text-xl font-bold mb-4 pt-2">
+        बाणेर-बालेवाडी-पाषाण-सोमेेश्वरवाडी-सुतारवाडी- सुस- महाळुंगे
+      </h1>
+
+      <div className="text-center mb-4 pt-2">
+        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded">
+          प्रभाग क्रमांक ०९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार
+        </span>
+      </div>
+
       {!showFourthTable && (
         <>
           <h2 className="text-center text-2xl font-extrabold my-3">
@@ -217,6 +227,19 @@ const SoundCheck: React.FC = () => {
           </div>
         </div>
       )}
+
+      <h1 className="text-center text-xl font-bold mb-4 mt-6">
+        <span className="text-red-600">कमळ </span>
+        या निशाणी समोरील बटन दाबून{" "}
+        <span className="text-red-600">भारतीय जनता पक्षाच्या </span>
+        चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
+      </h1>
+
+      <div className="text-center mb-4 pt-2">
+        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded">
+          मतदान - गुरुवार, दि. १५ जानेवारी २०२६ सकाळी ७:३० ते सायंकाळी ५.३० वाजेपर्यंत.
+        </span>
+      </div>
 
       <audio ref={candidateSoundRef} src="/sound1.mp3" />
       <audio ref={otherSoundRef} src="/sound2.mp3" />
