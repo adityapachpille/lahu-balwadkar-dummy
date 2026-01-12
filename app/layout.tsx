@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "डिजिटल डमी मतदान यंत्र",
-  description: "प्रभाग क्रमांक ९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार",
+  title: "Ward 09 Voting",
+  description: "Digital Dummy Voting",
 };
 
 export default function RootLayout({
