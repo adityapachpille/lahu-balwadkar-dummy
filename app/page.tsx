@@ -26,7 +26,10 @@ const SoundCheck: React.FC = () => {
       .replace(/9/g, "९");
 
   const playSound = (index: number, isCandidate: boolean, tableIndex: number) => {
-    const audio = isCandidate ? candidateSoundRef.current : otherSoundRef.current;
+    const audio = isCandidate
+      ? candidateSoundRef.current
+      : otherSoundRef.current;
+
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
@@ -73,29 +76,45 @@ const SoundCheck: React.FC = () => {
           {isCandidate && (
             <div className="flex items-center gap-3 px-2 py-1">
               <div className="leading-tight font-bold text-sm">{name}</div>
-              <img src={imageSrc} alt="" className="w-16 h-16 rounded object-cover" />
+              <img
+                src={imageSrc}
+                alt=""
+                className="w-16 h-16 rounded object-cover"
+              />
             </div>
           )}
-          {isNota && <div className="text-center font-bold py-4">नोटा (NOTA)</div>}
+          {isNota && (
+            <div className="text-center font-bold py-4">
+              नोटा (NOTA)
+            </div>
+          )}
         </td>
 
         <td className="border-2 border-gray-400 text-center w-[120px]">
           {isCandidate && (
-            <img src="/symbol-bartan.png" alt="" className="w-16 h-16 mx-auto" />
+            <img
+              src="/symbol-bartan.png"
+              alt=""
+              className="w-16 h-16 mx-auto"
+            />
           )}
         </td>
 
         <td className="border-2 border-gray-400 text-center w-[60px]">
           <div
             className={`w-5 h-5 mx-auto rounded-full ${
-              activeRow === baseIndex + index ? "bg-red-600" : "bg-gray-400"
+              activeRow === baseIndex + index
+                ? "bg-red-600"
+                : "bg-gray-400"
             }`}
           />
         </td>
 
         <td className="border-2 border-gray-400 text-center w-[100px] font-bold">
           <button
-            onClick={() => playSound(baseIndex + index, isCandidate, tableIndex)}
+            onClick={() =>
+              playSound(baseIndex + index, isCandidate, tableIndex)
+            }
             className="w-24 h-10 bg-blue-700 text-white text-sm font-bold rounded-full"
           >
             {isCandidate ? "बटन दाबा" : ""}
@@ -120,9 +139,11 @@ const SoundCheck: React.FC = () => {
     const limit = end ?? totalRows;
 
     return (
-      <div className={`${bgColor} mb-6`}>
-        {/* ✅ Table Title Outside Table */}
-        <h5 className="text-center text-xl font-bold py-3 border-2 border-gray-400 bg-white">
+      <div className={bgColor}>
+        {/* TABLE TITLE (same background color) */}
+        <h5
+          className={`text-center text-xl font-bold py-3 border-2 border-gray-400 ${bgColor}`}
+        >
           {title}
         </h5>
 
@@ -133,10 +154,18 @@ const SoundCheck: React.FC = () => {
                 <th className="border-2 border-gray-400 text-xs font-bold text-center w-[40px]">
                   अनु. क्र.
                 </th>
-                <th className="border-2 border-gray-400 text-xs font-bold">उमेदवाराचे नाव</th>
-                <th className="border-2 border-gray-400 text-xs font-bold">निशाणी</th>
-                <th className="border-2 border-gray-400 text-xs font-bold">बत्ती</th>
-                <th className="border-2 border-gray-400 text-xs font-bold">बटन</th>
+                <th className="border-2 border-gray-400 text-xs font-bold">
+                  उमेदवाराचे नाव
+                </th>
+                <th className="border-2 border-gray-400 text-xs font-bold">
+                  निशाणी
+                </th>
+                <th className="border-2 border-gray-400 text-xs font-bold">
+                  बत्ती
+                </th>
+                <th className="border-2 border-gray-400 text-xs font-bold">
+                  बटन
+                </th>
               </tr>
             </thead>
           )}
@@ -176,7 +205,7 @@ const SoundCheck: React.FC = () => {
       </h1>
 
       <div className="text-center mb-4 pt-2">
-        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded dark:bg-yellow-300">
+        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded">
           प्रभाग क्रमांक ०९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार
         </span>
       </div>
@@ -267,7 +296,8 @@ const SoundCheck: React.FC = () => {
       )}
 
       <h1 className="text-center text-xl font-bold mb-4 mt-6">
-        <span className="text-red-600">कमळ </span> या निशाणी समोरील बटन दाबून{" "}
+        <span className="text-red-600">कमळ </span>
+        या निशाणी समोरील बटन दाबून{" "}
         <span className="text-red-600">भारतीय जनता पक्षाच्या </span>
         चारही उमेदवारांना प्रचंड बहुमतांनी विजयी करा
       </h1>
