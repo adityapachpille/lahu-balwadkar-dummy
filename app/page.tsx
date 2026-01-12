@@ -177,7 +177,7 @@ const SoundCheck: React.FC = () => {
 
       <div className="text-center mb-4 pt-2">
         <span className="bg-blue-700 font-bold text-white px-4 py-2 inline-block rounded-full">
-          डेमो मतदानासाठी कमळ या निशाणी समोरील बटन दाबावे
+          मतदानाच्या दिवशी सुद्धा 'कमळ' या चिन्हा समोरील निळे बटन दाबावे
         </span>
       </div>
 
