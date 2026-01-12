@@ -162,6 +162,25 @@ const SoundCheck: React.FC = () => {
 
   return (
     <section className="bg-gray-100 px-4 py-4">
+       <h1 className="text-center text-xl font-bold mb-4">
+        पुणे महानगरपालिका सार्वत्रिक निवडणूक - २०२६ डमी मतदान यंत्र
+      </h1>
+
+      <div className="text-center mb-4 pt-2">
+        <span className="bg-blue-700 font-bold text-white px-4 py-2 inline-block rounded-full">
+          डेमो मतदानासाठी कमळ या निशाणी समोरील बटन दाबावे
+        </span>
+      </div>
+
+      <h1 className="text-center text-xl font-bold mb-4 pt-2">
+        बाणेर-बालेवाडी-पाषाण-सोमेेश्वरवाडी-सुतारवाडी- सुस- महाळुंगे
+      </h1>
+
+      <div className="text-center mb-4 pt-2">
+        <span className="bg-yellow-200 text-green-800 font-bold px-4 py-2 inline-block rounded">
+          प्रभाग क्रमांक ०९ – भारतीय जनता पार्टीचे अधिकृत उमेदवार
+        </span>
+      </div>
 
       {!showFourthTable && (
         <>
