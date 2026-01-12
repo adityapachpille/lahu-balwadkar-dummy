@@ -194,7 +194,7 @@ const SoundCheck: React.FC = () => {
       {!showFourthTable && (
         <>
           <h2 className="text-center text-2xl font-extrabold my-3">
-            मशिन क्र. 0१
+            मशिन क्र. ०१
           </h2>
 
           {renderTable(0, "प्रभाग क्र. ०९ (अ)", 4, <>चिमटे रोहिणी सुधीर</>, 0, "bg-white", true)}
@@ -206,7 +206,7 @@ const SoundCheck: React.FC = () => {
       {showFourthTable && (
         <>
           <h2 className="text-center text-2xl font-extrabold my-3">
-            मशिन क्र. 0२
+            मशिन क्र. ०२
           </h2>
 
           {renderTable(2, "प्रभाग क्र. ०९ (क)", 5, <>कोकाटे मयुरी राहुल</>, 0, "bg-[#fdfda5]", true, 2)}
